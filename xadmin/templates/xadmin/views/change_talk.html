@@ -1,0 +1,31 @@
+{% extends base_template %}
+{% load i18n %}
+
+{% load xadmin_tags %}
+
+{% block nav_title %}设置功能{% endblock %}
+
+{% block content %}
+
+<div class="form-group" id="div_id_function_setup">
+    <label class="control-label" for=""></label>
+    <div class="controls ">
+        <form action="{% url 'set_talk' %}" method="post">
+            {% for n in queryset %}
+            <input type="hidden" name="userid" value="{{n}}">
+            {% endfor %}
+            {% csrf_token %}
+            {% for i in list %}
+            <input type="checkbox" name="talk" value="{{i.id}}">{{i.talk_content}}
+            <br>
+            <br>
+            {% endfor %}
+            <br>
+            <button>提交</button>
+        </form>
+    </div>
+
+</div>
+
+
+{% endblock %}
